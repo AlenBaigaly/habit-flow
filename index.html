@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#13291f" />
+  <meta name="description" content="Личный трекер здоровья и DevOps" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Ритм — привычки на каждый день</title>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">ТВОЙ РИТМ</p>
+        <h1>Маленькие дела.<br>Настоящий прогресс.</h1>
+        <p class="hero-copy">Здоровье в 17:00, DevOps в твоё время. Без перегруза — только следующий шаг.</p>
+      </div>
+      <div class="date-card" id="todayDate"></div>
+    </header>
+
+    <section class="progress-panel" aria-label="Прогресс за сегодня">
+      <div>
+        <p class="section-label">СЕГОДНЯ</p>
+        <h2 id="progressText">0 из 2 выполнено</h2>
+      </div>
+      <div class="ring" id="progressRing" aria-label="0 процентов"><span id="progressPercent">0%</span></div>
+    </section>
+
+    <section class="section" aria-labelledby="todayTitle">
+      <div class="section-heading">
+        <div><p class="section-label">ПЛАН НА ДЕНЬ</p><h2 id="todayTitle">Два важных дела</h2></div>
+        <button class="text-button" id="resetToday" type="button">Сбросить день</button>
+      </div>
+      <div class="task-grid">
+        <article class="task-card health">
+          <div class="task-top"><span class="icon">⌁</span><span class="time" id="healthTimeLabel">17:00</span></div>
+          <h3>Осанка и шея</h3>
+          <p>8–10 минут спокойной разминки.</p>
+          <div class="task-actions">
+            <button class="outline-button" data-open="exercises" type="button">Упражнения</button>
+            <button class="complete-button" data-task="health" type="button">Готово</button>
+          </div>
+        </article>
+        <article class="task-card devops">
+          <div class="task-top"><span class="icon">⌘</span><span class="time" id="devopsTimeLabel">20:00</span></div>
+          <h3>DevOps-практика</h3>
+          <p id="devopsSubtitle">Linux: команды и файловая система.</p>
+          <div class="task-actions">
+            <button class="outline-button" data-open="devops" type="button">Открыть план</button>
+            <button class="complete-button" data-task="devops" type="button">Готово</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="weekTitle">
+      <div class="section-heading"><div><p class="section-label">ТЕМП</p><h2 id="weekTitle">Эта неделя</h2></div><p class="streak" id="streak">🔥 0 дней подряд</p></div>
+      <div class="week" id="week"></div>
+    </section>
+
+    <section class="section settings-card" aria-labelledby="settingsTitle">
+      <div><p class="section-label">НАСТРОЙКИ</p><h2 id="settingsTitle">Напоминания</h2></div>
+      <div class="settings-grid">
+        <label>Здоровье <input id="healthTime" type="time" value="17:00"></label>
+        <label>DevOps <input id="devopsTime" type="time" value="20:00"></label>
+      </div>
+      <div class="settings-actions">
+        <button class="outline-button" id="enableNotifications" type="button">Включить уведомления</button>
+        <button class="outline-button" id="calendarExport" type="button">Добавить в календарь</button>
+      </div>
+      <p class="small-note" id="notificationNote">Для точного напоминания при закрытом сайте добавь события в календарь телефона.</p>
+    </section>
+
+    <section class="section data-actions">
+      <button class="text-button" id="exportData" type="button">Экспортировать прогресс</button>
+      <label class="text-button import-label">Импортировать прогресс<input id="importData" type="file" accept="application/json"></label>
+    </section>
+  </main>
+
+  <dialog id="modal">
+    <div class="modal-head"><button class="close" id="closeModal" aria-label="Закрыть">×</button></div>
+    <div id="modalContent"></div>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
